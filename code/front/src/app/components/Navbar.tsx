@@ -1,25 +1,21 @@
-import Link from 'next/link';
-import React from 'react';
+import Link from "next/link";
+import React from "react";
 
 const Navbar: React.FC = () => {
   return (
-    <div className='p-4 my-2 w-full flex justify-between bg-secondary rounded-3xl sm:py-1'>
-      <h1 className='text-white text-lg sm:text-sm font-bold mb-2 sm:mt-2 sm:ml-4 mx-10 mt-2'>joão centrone.</h1>
-      <ul className='flex sm:flex-row sm:mr-6 ml-4 sm:mt-2 mt-2 mx-10'>
-        <li className='mx-4 hover:font-bold sm:text-sm sm:ml-2'>
-          <Link href='#my-page'>
-            sobre
-          </Link>
+    <div className="p-2 m-2 flex bg-zinc-700 rounded-xl justify-between max-w-full lg:px-6 xl:px-8">
+      <h1 className="text-white font-bold text-lg xs:text-base mx-4 py-2">
+        João Centrone.
+      </h1>
+      <ul className="flex space-x-4 mt-2">
+        <li className="hover:font-bold text-sm sm:text-base">
+          <Link href="#my-page">Sobre</Link>
         </li>
-        <li className='mx-4 hover:font-bold sm:text-sm sm:mx-2'>
-          <Link href='#projetos'>
-            projetos
-          </Link>
+        <li className="hover:font-bold text-sm sm:text-base">
+          <Link href="#projetos">Projetos</Link>
         </li>
-        <li className='mx-4 hover:font-bold sm:text-sm sm:mx-2' >
-          <Link href='#contato'>
-            contato
-          </Link>
+        <li className="hover:font-bold text-sm sm:text-base">
+          <Link href="#contato">Contato</Link>
         </li>
       </ul>
     </div>

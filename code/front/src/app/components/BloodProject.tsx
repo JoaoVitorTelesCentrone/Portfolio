@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const BloodProject = () => {
   return (
-    <div className='p-8 bg-secondary rounded-2xl sm:p-4' id='projetos'>
+    <div className='p-8 bg-green-900 rounded-2xl sm:p-4' id='projetos'>
         <div className="flex sm:flex-col justify-around w-full">
             <div className="flex flex-col sm:flex-none sm:w-full w-[50%]">
               <h1 className='text-white flex font-bold text-3xl mt-2'><Syringe className='font-bold mx-4 mt-1' />Blood Donation</h1>

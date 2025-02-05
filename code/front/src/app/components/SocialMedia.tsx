@@ -1,14 +1,43 @@
-import Link from 'next/link'
-import React from 'react'
+"use client";
+import Link from "next/link";
+import React, { useState } from "react";
 
 const SocialMedia = () => {
-  return (
-    <div className='my-4 flex justify-around sm:justify-center sm:mx-4'>
-        <Link className='py-2 px-10 sm:mx-2 sm:px-4 bg-secondary rounded-xl mx-4 text-white font-bold text-center hover:transition delay-100 hover:scale-105' href='' >linkedin.</Link>
-        <Link className='py-2 px-10 sm:mx-2 sm:px-4 bg-secondary rounded-xl mx-4 text-white font-bold text-center hover:transition delay-100 hover:scale-105' href='' >twitter.</Link>
-        <Link className='py-2 px-10 sm:mx-2 sm:px-4 bg-secondary rounded-xl mx-4 text-white font-bold text-center hover:transition delay-100 hover:scale-105' href='' >instagram.</Link>        
-    </div>
-  )
-}
+  const [expandedLink, setExpandedLink] = useState(null);
 
-export default SocialMedia
+  // Alterna o link expandido
+  const toggleLink = (link: any) => {
+    setExpandedLink(expandedLink === link ? null : link);
+  };
+
+  const links = [
+    { name: "Linkedin", href: "#" },
+    { name: "Twitter", href: "#" },
+    { name: "Instagram", href: "#" },
+    { name: "Medium", href: "#" },
+    { name: "YouTube", href: "#" },
+  ];
+
+  return (
+    <div className="my-4 flex flex-col xs:flex-col sm:flex-row sm:flex-wrap justify-center items-center gap-4">
+      {links.map((link) => (
+        <div
+          key={link.name}
+          onClick={() => toggleLink(link.name)}
+          className={`cursor-pointer rounded-xl bg-zinc-800 text-white font-bold text-center transition-all duration-300 ease-in-out
+            ${
+              expandedLink === link.name
+                ? "p-6 sm:w-48 xs:w-full scale-105"
+                : "p-4 sm:w-40 xs:w-full scale-100"
+            }`}
+        >
+          <Link href={link.href} className="block w-full">
+            {link.name}
+          </Link>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default SocialMedia;

@@ -1,25 +1,37 @@
-import { Send } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
+import { Send } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import React from "react";
 
-import foto from '../assets/foto.png'
+import foto from "../assets/foto.png";
 
 const MySection = () => {
   return (
-    <div className='flex w-full sm:flex-col' id='my-page'>
-      <div className='w-[60%] sm:w-[100%] rounded-xl bg-secondary p-4 flex justify-between sm:flex-col '>
-        <Image alt='' className='w-[200px] h-[200px] rounded-3xl my-2 ' src={foto} />
-        <h1 className='max-w-[600px] text-5xl font-bold sm:text-xl my-2'>João Centrone é um desenvolverdor de software atualmente trabalhando em ZBRA</h1>
+    <div className="flex flex-col md:flex-row w-full p-4 gap-4" id="my-page">
+      {/* Left Section */}
+      <div className="flex flex-col items-center md:items-start bg-zinc-900 shadow-sm shadow-green-300 p-4 rounded-xl w-full md:w-1/2">
+        <Image alt="" className="w-48 h-48 rounded-3xl my-2" src={foto} />
+        <h1 className="text-center md:text-left text-lg md:text-2xl font-bold mt-4">
+          João Centrone é um desenvolvedor de software atualmente trabalhando na
+          ZBRA
+        </h1>
       </div>
-      <div className='w-[40%] sm:w-full sm:ml-0 sm:mt-4 flex flex-col ml-3 rounded-xl bg-secondary '>
-        <div className='mt-12 sm:mt-4'>
-          <h1 className='mx-auto text-center max-w-[400px] text-5xl font-extrabold'>Tem algum projeto em mente ?</h1>
-          <Link href='' className='flex text-center  mx-auto sm:mb-4 my-8 rounded-xl bg-primary text-black p-2 justify-between max-w-[230px] text-xl font-bold hover:bg-green-200 hover:transition delay-100 hover:scale-125 '>Entre em contato<Send className='w-5 h-5 mt-1 mx-2' /></Link>
-        </div>
+
+      {/* Right Section */}
+      <div className="flex flex-col items-center justify-center bg-zinc-800 rounded-xl p-4 w-full md:w-1/2">
+        <h1 className="text-center text-3xl md:text-4xl font-extrabold mt-4">
+          Tem algum projeto em mente?
+        </h1>
+        <Link
+          href=""
+          className="flex items-center justify-center bg-black bg-opacity-75 text-white p-3 mt-8 rounded-xl text-lg font-bold hover:bg-green-200 hover:scale-105 transition transform duration-150"
+        >
+          Entre em contato
+          <Send className="w-5 h-5 ml-2 text-green-300" />
+        </Link>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default MySection
+export default MySection;
