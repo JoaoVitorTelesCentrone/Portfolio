@@ -12,9 +12,7 @@ const SocialMedia = () => {
 
   const links = [
     { name: "Linkedin", href: "#" },
-    { name: "Twitter", href: "#" },
     { name: "Instagram", href: "#" },
-    { name: "Medium", href: "#" },
     { name: "YouTube", href: "#" },
   ];
 

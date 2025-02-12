@@ -3,7 +3,7 @@ import React from "react";
 
 const Navbar: React.FC = () => {
   return (
-    <div className="p-2 m-2 flex bg-zinc-700 rounded-xl justify-between max-w-full lg:px-6 xl:px-8">
+    <div className="p-2 m-2 flex bg-zinc-700 rounded-xl justify-between max-w-full xl:px-8 ">
       <h1 className="text-white font-bold text-lg xs:text-base mx-4 py-2">
         João Centrone.
       </h1>

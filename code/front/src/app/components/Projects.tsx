@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa"; // Importa o ícone de fechar
-import Image, { StaticImageData } from "next/image"; // Importa o componente Image do Next.js
+import { FaTimes } from "react-icons/fa";
+import Image, { StaticImageData } from "next/image";
 import eventos from "../assets/eventos.jpeg";
 import { Code } from "lucide-react";
 
@@ -25,8 +25,8 @@ type ModalDetails = {
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<ModalDetails | null>(
     null
-  ); // Estado para armazenar os detalhes do projeto selecionado
-  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para controlar a visibilidade do modal
+  );
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Dados dos projetos (informações básicas)
   const projects: Project[] = [
@@ -100,17 +100,17 @@ const Projects = () => {
   };
 
   return (
-    <div className="p-4 mx-8 rounded-xl border-white bg-zinc-800 shadow-sm shadow-green-300 cursor-pointer">
-      <h1 className="mx-auto flex text-3xl xs:text-2xl p-2 font-bold uppercase">
+    <div className="p-4 mx-4 md:mx-8 rounded-xl border-white bg-zinc-800 shadow-sm shadow-green-300 cursor-pointer">
+      <h1 className="mx-auto flex text-2xl md:text-3xl p-2 font-bold uppercase">
         Meus Projetos <Code className="mt-1 mx-2 text-green-300" />
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {projects.map((project) => (
           <div
             key={project.id}
             className="bg-zinc-700 p-4 rounded-lg text-white shadow-md hover:bg-zinc-600 transition-colors"
-            onClick={() => openModal(project.id)} // Abre o modal ao clicar no projeto
+            onClick={() => openModal(project.id)}
           >
             <h3 className="text-xl font-bold mb-1">{project.title}</h3>
             <p className="text-sm text-gray-300">{project.description}</p>
@@ -122,13 +122,12 @@ const Projects = () => {
       {isModalOpen && selectedProject && (
         <div
           className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          onClick={closeModal} // Fecha o modal ao clicar fora
+          onClick={closeModal}
         >
           <div
             className="bg-zinc-800 p-6 rounded-lg text-white w-11/12 max-w-md relative"
-            onClick={(e) => e.stopPropagation()} // Impede que o clique no modal feche o modal
+            onClick={(e) => e.stopPropagation()}
           >
-            {/* Botão de fechar */}
             <button
               onClick={closeModal}
               className="absolute top-2 right-2 text-gray-300 hover:text-white"
@@ -136,15 +135,10 @@ const Projects = () => {
               <FaTimes className="text-2xl" />
             </button>
 
-            {/* Conteúdo do modal */}
             <h2 className="text-2xl font-bold mb-4">{selectedProject.title}</h2>
             <div className="relative w-full h-48 rounded-lg mb-4">
               <Image
-                src={
-                  typeof selectedProject.image === "string"
-                    ? selectedProject.image
-                    : eventos
-                }
+                src={selectedProject.image}
                 alt={selectedProject.title}
                 layout="fill"
                 objectFit="cover"
@@ -153,7 +147,6 @@ const Projects = () => {
             </div>
             <p className="text-gray-300 mb-4">{selectedProject.description}</p>
 
-            {/* Tecnologias usadas */}
             <div className="mb-4">
               <h3 className="text-lg font-semibold">Tecnologias:</h3>
               <ul className="list-disc list-inside">
@@ -165,7 +158,6 @@ const Projects = () => {
               </ul>
             </div>
 
-            {/* Link do projeto */}
             <a
               href={selectedProject.link}
               target="_blank"
