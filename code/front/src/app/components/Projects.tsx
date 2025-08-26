@@ -1,175 +1,131 @@
-"use client";
-import React, { useState } from "react";
-import { FaTimes } from "react-icons/fa";
-import Image, { StaticImageData } from "next/image";
-import eventos from "../assets/eventos.jpeg";
-import { Code } from "lucide-react";
-
-// Definição dos tipos
-type Project = {
-  id: number;
-  image: string | StaticImageData;
-  title: string;
-  description: string;
-};
-
-type ModalDetails = {
-  id: number;
-  title: string;
-  image: string | StaticImageData;
-  description: string;
-  technologies: string[];
-  link: string;
-};
+// components/Projects.tsx
+import Image from "next/image";
+import { ExternalLink, Github } from "lucide-react";
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState<ModalDetails | null>(
-    null
-  );
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // Dados dos projetos (informações básicas)
-  const projects: Project[] = [
+  const projects = [
     {
       id: 1,
-      image: eventos,
-      title: "Eventos",
+      title: "Sistema de Automação de Testes",
       description:
-        "Esse foi um projeto criado para me auxiliar no ensino de QAs sobre Cypress.",
-    },
-    {
-      id: 2,
-      image: "https://via.placeholder.com/150",
-      title: "Coleta de Dados com Cypress",
-      description:
-        "Projeto para coletar dados pelo Cypress, salvar num banco e mostrar em uma dashboard React.",
-    },
-    {
-      id: 3,
-      image: "https://via.placeholder.com/150",
-      title: "Gym Hub",
-      description: "Software criado para fazer o controle de rotinas.",
-    },
-  ];
-
-  // Dados detalhados para o modal (informações adicionais)
-  const modalDetails: ModalDetails[] = [
-    {
-      id: 1,
-      title: "Eventos",
-      image: eventos,
-      description:
-        "Esse foi um projeto criado para me auxiliar no ensino de QAs sobre Cypress.",
+        "Plataforma completa para automação de testes E2E com Cypress",
+      image: "/images/automation-project.jpg", // Substitua pelas suas imagens
       technologies: ["Cypress", "JavaScript", "Node.js"],
-      link: "https://github.com/seu-usuario/projeto-eventos",
+      liveUrl: "https://exemplo.com",
+      githubUrl: "https://github.com/usuario/projeto",
     },
     {
       id: 2,
-      title: "Coleta de Dados com Cypress",
-      image: "https://via.placeholder.com/150",
+      title: "Dashboard de Métricas de Qualidade",
       description:
-        "Projeto para coletar dados pelo Cypress, salvar num banco e mostrar em uma dashboard React.",
-      technologies: ["Cypress", "React", "MongoDB"],
-      link: "https://github.com/seu-usuario/projeto-coleta-dados",
+        "Painel visual para acompanhamento de indicadores de qualidade de software",
+      image: "/images/dashboard-project.jpg",
+      technologies: ["React", "Chart.js", "Next.js"],
+      liveUrl: "https://exemplo.com",
+      githubUrl: "https://github.com/usuario/projeto",
     },
     {
       id: 3,
-      title: "Gym Hub",
-      image: "https://via.placeholder.com/150",
-      description: "Software criado para fazer o controle de rotinas.",
-      technologies: ["React", "Node.js", "Express", "MongoDB"],
-      link: "https://github.com/seu-usuario/projeto-gym-hub",
+      title: "Plataforma de Report de Bugs",
+      description:
+        "Sistema para reportar, acompanhar e gerenciar bugs em projetos",
+      image: "/images/bug-tracker.jpg",
+      technologies: ["TypeScript", "Next.js", "MongoDB"],
+      liveUrl: "https://exemplo.com",
+      githubUrl: "https://github.com/usuario/projeto",
+    },
+    {
+      id: 4,
+      title: "Site Institucional",
+      description: "Landing page responsiva para empresa de tecnologia",
+      image: "/images/website-project.jpg",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      liveUrl: "https://exemplo.com",
+      githubUrl: "https://github.com/usuario/projeto",
     },
   ];
-
-  // Função para abrir o modal com o projeto selecionado
-  const openModal = (projectId: number) => {
-    const projectDetails = modalDetails.find(
-      (project) => project.id === projectId
-    );
-    if (projectDetails) {
-      setSelectedProject(projectDetails);
-      setIsModalOpen(true);
-    }
-  };
-
-  // Função para fechar o modal
-  const closeModal = () => {
-    setSelectedProject(null);
-    setIsModalOpen(false);
-  };
 
   return (
-    <div className="p-4 mx-4 md:mx-8 rounded-xl border-white bg-zinc-800 shadow-sm shadow-green-300 cursor-pointer">
-      <h1 className="mx-auto flex text-2xl md:text-3xl p-2 font-bold uppercase">
-        Meus Projetos <Code className="mt-1 mx-2 text-green-300" />
-      </h1>
+    <section id="projects" className="py-16 bg-zinc-900">
+      <div className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-white mb-12">
+          Meus Projetos em Destaque
+        </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.map((project) => (
-          <div
-            key={project.id}
-            className="bg-zinc-700 p-4 rounded-lg text-white shadow-md hover:bg-zinc-600 transition-colors"
-            onClick={() => openModal(project.id)}
-          >
-            <h3 className="text-xl font-bold mb-1">{project.title}</h3>
-            <p className="text-sm text-gray-300">{project.description}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Modal */}
-      {isModalOpen && selectedProject && (
-        <div
-          className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-zinc-800 p-6 rounded-lg text-white w-11/12 max-w-md relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={closeModal}
-              className="absolute top-2 right-2 text-gray-300 hover:text-white"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="bg-zinc-800 rounded-xl overflow-hidden group hover:shadow-lg hover:shadow-green-500/20 transition-all duration-300"
             >
-              <FaTimes className="text-2xl" />
-            </button>
+              {/* Imagem do projeto */}
+              <div className="relative h-64 overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <div className="flex space-x-4">
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white text-zinc-900 p-3 rounded-full hover:bg-green-300 transition-colors"
+                    >
+                      <ExternalLink size={20} />
+                    </a>
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="bg-white text-zinc-900 p-3 rounded-full hover:bg-green-300 transition-colors"
+                    >
+                      <Github size={20} />
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-            <h2 className="text-2xl font-bold mb-4">{selectedProject.title}</h2>
-            <div className="relative w-full h-48 rounded-lg mb-4">
-              <Image
-                src={selectedProject.image}
-                alt={selectedProject.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
+              {/* Conteúdo do projeto */}
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-white mb-2">
+                  {project.title}
+                </h3>
+                <p className="text-gray-300 mb-4">{project.description}</p>
+
+                {/* Tecnologias utilizadas */}
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="bg-zinc-700 text-green-300 text-sm px-3 py-1 rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
-            <p className="text-gray-300 mb-4">{selectedProject.description}</p>
-
-            <div className="mb-4">
-              <h3 className="text-lg font-semibold">Tecnologias:</h3>
-              <ul className="list-disc list-inside">
-                {selectedProject.technologies.map((tech, index) => (
-                  <li key={index} className="text-gray-300">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <a
-              href={selectedProject.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 underline"
-            >
-              Ver no GitHub
-            </a>
-          </div>
+          ))}
         </div>
-      )}
-    </div>
+
+        {/* Call to Action */}
+        <div className="text-center mt-12">
+          <p className="text-gray-300 mb-6">
+            Quer ver mais projetos ou discutir uma colaboração?
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center bg-green-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700 transition-colors"
+          >
+            Entre em Contato
+            <ExternalLink className="ml-2" size={18} />
+          </a>
+        </div>
+      </div>
+    </section>
   );
 };
 
